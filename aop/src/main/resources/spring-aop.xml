@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="target" class="com.heaboy.aopdemo.aop.Target"/>
+
+    <bean id="targetAdvice" class="com.heaboy.aopdemo.aop.TargetAdvice"/>
+
+    <bean id="targetProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="target"/> <!--被代理的类-->
+        <property name="interceptorNames" value="targetAdvice"/>  <!--如果用多种增强方式,value的值使用逗号(,)分割-->
+        <property name="proxyTargetClass" value="false"/>
+        <property name="interfaces" value="com.heaboy.aopdemo.aop.TargetInteface"/>  <!--target实现的接口-->
+    </bean>
+</beans>
